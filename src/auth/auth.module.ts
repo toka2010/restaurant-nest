@@ -6,25 +6,27 @@ import { RolesGuard } from './gurdes/roles.guard';
 import { JwtAuthGuard } from './gurdes/jwt-guard';
 import { JwtStrategy } from './gurdes/jwt-strategy';
 import { UserModule } from 'src/user/user.module';
-import { RestaurantModule } from 'src/restaurant/restaurant.module';
+import { PassportModule } from '@nestjs/passport';
+import { LocalStrategy } from './local.strategy';
 const dotenv = require('dotenv').config();
 
 @Module({
   imports: [
-    forwardRef(() => 
+    forwardRef(() =>
       UserModule
-  ),
+    ),
+    PassportModule,
     JwtModule.registerAsync({
-      imports: [ConfigModule],
+      imports: [ConfigModule ],
       inject: [ConfigService],
       useFactory: async (confiService: ConfigService) => ({
         secret: confiService.get('JWT_SECRET'),
         signOptions: { expiresIn: '10000s' },
       }),
     })],
-    providers:[AuthService , RolesGuard, JwtAuthGuard , JwtStrategy,ConfigService ],
-    exports:[AuthService,ConfigService],
+  providers: [AuthService, RolesGuard, JwtAuthGuard, JwtStrategy, ConfigService , LocalStrategy],
+  exports: [AuthService, ConfigService],
 
-    
+
 })
-export class AuthModule {}
+export class AuthModule { }

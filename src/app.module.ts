@@ -13,9 +13,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     RestaurantModule,
     CityModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://toqa:MS8Mnaqf2alNAPSt@cluster0.hlmg7.mongodb.net/restbb?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.DATABASE),
     UserModule,
     AuthModule,],
   controllers: [AppController],

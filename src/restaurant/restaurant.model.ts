@@ -49,7 +49,7 @@ restaurantSchema.pre(/^find/,function(next){
   next();
 });
 export interface Restaurant extends mongoose.Document {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   city: string;

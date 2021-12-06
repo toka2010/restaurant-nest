@@ -7,7 +7,7 @@ export const userSchema=new mongoose.Schema({
        
     },
   email: {
-        type:String,
+    type: String,
         required:[true,'user must Have Email'],
         unique:true ,
        

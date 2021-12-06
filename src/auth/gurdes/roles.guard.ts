@@ -22,6 +22,8 @@ canActivate( context: ExecutionContext) {
   
     
     const user:User = request.user;
+    console.log("🚀 ~ file: roles.guard.ts ~ line 25 ~ RolesGuard ~ canActivate ~ user", user)
+    
    if(roles.includes(user.role)){
 
     return true;

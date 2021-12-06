@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsLatLong, isLatLong, IsNotEmpty, IsObject, IsString } from 'class-validator';
-export class createRestaurantDto{
+export class CreateRestaurantDto{
   @ApiProperty({
     type:String,
     description: 'the name of restaurant',

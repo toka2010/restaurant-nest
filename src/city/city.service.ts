@@ -2,18 +2,18 @@ import { HttpException, Injectable ,NotFoundException } from '@nestjs/common';
 import { InjectModel,InjectConnection } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { City } from './city.model';
-import { createCityDto } from './dto/create-city.dto';
+import { CreateCityDto } from './dto/Create-City.Dto';
 
 
 @Injectable()
 export class CityService {
     private cities: City[] = [];
-  constructor(@InjectModel('City') private readonly CityModel: Model<City>) {}
+  constructor(@InjectModel('City') private readonly cityModel: Model<City>) {}
 
 
-  async insertCity(createcity:createCityDto) {
+  async insertCity(createcity:CreateCityDto) {
     try{
-    const newCity = new this.CityModel(createcity);
+    const newCity = new this.cityModel(createcity);
     const result = await newCity.save();
     //console.log('🚀 ~ result', result);
     return result;
@@ -24,7 +24,7 @@ export class CityService {
     
   }
   async getAllCities(){
-    const getcities=  await this.CityModel.find().exec();
+    const getcities=  await this.cityModel.find().exec();
     console.log('🚀result', getcities);
     
     return getcities;
